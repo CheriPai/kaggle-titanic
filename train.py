@@ -1,8 +1,9 @@
 import helpers
 import pandas as pd
 from sklearn import cross_validation
-from sklearn.ensemble import RandomForestClassifier
+from sklearn.ensemble import GradientBoostingClassifier, VotingClassifier
 from sklearn.externals import joblib
+from sklearn.svm import SVC
 from sklearn.metrics import average_precision_score, recall_score
 
 
@@ -16,7 +17,10 @@ X_train, X_test, y_train, y_test = cross_validation.train_test_split(
     X, y, test_size=0.1, random_state=0)
 
 # Create and train classifier
-clf = RandomForestClassifier(random_state=1, n_estimators=100, min_samples_split=4, min_samples_leaf=2)
+clf1 = GradientBoostingClassifier(random_state=1, n_estimators=25, max_depth=3)
+clf2 = SVC(random_state=1, probability=True)
+clf = VotingClassifier(estimators=[('gb', clf1), ('svm', clf2)], voting='soft', weights=[3, 1])
+# clf.fit(X_train, y_train)
 clf.fit(X_train, y_train)
 
 # Test on cross validation set
