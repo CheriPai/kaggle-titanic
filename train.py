@@ -20,7 +20,6 @@ X_train, X_test, y_train, y_test = cross_validation.train_test_split(
 clf1 = GradientBoostingClassifier(random_state=1, n_estimators=25, max_depth=3)
 clf2 = SVC(random_state=1, probability=True)
 clf = VotingClassifier(estimators=[('gb', clf1), ('svm', clf2)], voting='soft', weights=[3, 1])
-# clf.fit(X_train, y_train)
 clf.fit(X_train, y_train)
 
 # Test on cross validation set
