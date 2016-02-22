@@ -1,5 +1,7 @@
 # kaggle-titanic
-Entry in Kaggle competition Titanic: Machine Learning from Disaster
+Entry in the Kaggle competition Titanic: Machine Learning from Disaster.
+
+Uses an ensemble of a gradient boosting classifier and a support vector machine.
 
 ##### Files
 - [```helpers.py```](helpers.py) contains various helper functions
